@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WK10 Weekly Business Review</title>
+<title>WK11 Weekly Business Review</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
@@ -58,7 +58,7 @@
   }
 
   .launch-badge {
-    background: linear-gradient(135deg, #ea580c, #dc2626);
+    background: linear-gradient(135deg, #7c3aed, #3b82f6);
     color: white;
     padding: 8px 16px;
     border-radius: 8px;
@@ -78,6 +78,7 @@
     padding: 4px;
     border-radius: 10px;
     width: fit-content;
+    flex-wrap: wrap;
   }
 
   .tab {
@@ -99,7 +100,6 @@
   .panel { display: none; }
   .panel.active { display: block; }
 
-  /* KPI Cards */
   .kpi-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -131,6 +131,7 @@
   .kpi-card.yellow::before { background: var(--yellow); }
   .kpi-card.red::before { background: var(--red); }
   .kpi-card.blue::before { background: var(--accent); }
+  .kpi-card.purple::before { background: #7c3aed; }
 
   .kpi-label {
     font-size: 11px;
@@ -153,10 +154,24 @@
   .kpi-card.yellow .kpi-value { color: var(--yellow); }
   .kpi-card.red .kpi-value { color: var(--red); }
   .kpi-card.blue .kpi-value { color: var(--accent2); }
+  .kpi-card.purple .kpi-value { color: #a78bfa; }
 
   .kpi-note { font-size: 12px; color: var(--muted); line-height: 1.4; }
 
-  /* Progress bars */
+  .wow-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+
+  .wow-tag.up { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+  .wow-tag.down { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .wow-tag.neutral { background: rgba(100,116,139,0.15); color: var(--muted); }
+
   .progress-block { margin-bottom: 20px; }
 
   .progress-header {
@@ -193,7 +208,6 @@
     border-radius: 2px;
   }
 
-  /* Sections */
   .section-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -248,8 +262,8 @@
   .dot.yellow { background: var(--yellow); }
   .dot.red { background: var(--red); }
   .dot.blue { background: var(--accent); }
+  .dot.purple { background: #7c3aed; }
 
-  /* Action items table */
   .actions-table {
     width: 100%;
     border-collapse: collapse;
@@ -306,77 +320,7 @@
   .due-pill.urgent { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
   .due-pill.soon { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
   .due-pill.ongoing { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
-
-  /* Parts donut */
-  .donut-wrap {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
-
-  .donut-svg { flex-shrink: 0; }
-  .donut-legend { flex: 1; }
-
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
-    font-size: 13px;
-  }
-
-  .legend-swatch {
-    width: 10px; height: 10px;
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
-
-  .legend-val { font-family: 'DM Mono', monospace; font-weight: 600; font-size: 14px; }
-  .legend-label { color: var(--muted); font-size: 12px; }
-
-  /* Volume trend bars */
-  .bar-chart {
-    display: flex;
-    align-items: flex-end;
-    gap: 8px;
-    height: 80px;
-    padding: 0 4px;
-  }
-
-  .bar-col {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    height: 100%;
-    justify-content: flex-end;
-  }
-
-  .bar-fill {
-    width: 100%;
-    border-radius: 4px 4px 0 0;
-    transition: height 0.8s cubic-bezier(0.16,1,0.3,1);
-    min-height: 4px;
-  }
-
-  .bar-label { font-size: 10px; color: var(--muted); font-family: 'DM Mono', monospace; }
-
-  /* Weather banner */
-  .alert-banner {
-    background: rgba(245,158,11,0.1);
-    border: 1px solid rgba(245,158,11,0.3);
-    border-radius: 10px;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-    font-size: 13px;
-    color: #fcd34d;
-  }
-
-  .alert-banner .icon { font-size: 18px; flex-shrink: 0; }
+  .due-pill.done { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
 
   .full-card { grid-column: 1 / -1; }
 
@@ -392,66 +336,214 @@
   .stat-row:last-child { border-bottom: none; }
   .stat-key { color: var(--muted); }
   .stat-val { font-weight: 600; font-family: 'DM Mono', monospace; }
+
+  .milestone-block {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .milestone-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 10px;
+  }
+
+  .alert-banner {
+    border-radius: 10px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+
+  .alert-banner.amber {
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.3);
+    color: #fcd34d;
+  }
+
+  .alert-banner.green {
+    background: rgba(16,185,129,0.08);
+    border: 1px solid rgba(16,185,129,0.3);
+    color: #6ee7b7;
+  }
+
+  .alert-banner .icon { font-size: 18px; flex-shrink: 0; }
+
+  .kpi-scorecard-row {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .sc-tile {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    position: relative;
+  }
+
+  .sc-tile .sc-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 5px; font-weight: 600; }
+  .sc-tile .sc-wk10 { font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace; margin-bottom: 2px; }
+  .sc-tile .sc-wk11 { font-size: 20px; font-weight: 700; font-family: 'DM Mono', monospace; line-height: 1; }
+  .sc-tile .sc-wow { font-size: 10px; font-family: 'DM Mono', monospace; font-weight: 600; margin-top: 4px; }
+  .sc-tile .sc-badge {
+    position: absolute;
+    top: 10px; right: 10px;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+  .sc-badge.hit { background: rgba(16,185,129,0.2); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
+  .sc-badge.miss { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+  .sc-badge.info { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
 </style>
 </head>
 <body>
 
 <div class="header">
   <div class="header-left">
-    <h1>Weekly Business Review — Week 10</h1>
-    <div class="subtitle">Wednesday, March 11, 2026 &nbsp;·&nbsp; WBR</div>
+    <h1>Weekly Business Review — Week 11</h1>
+    <div class="subtitle">Wednesday, March 18, 2026 &nbsp;·&nbsp; WBR &nbsp;·&nbsp; Mar 8 – Mar 14, 2026</div>
   </div>
   <div class="launch-badge">
-    <div>DIRECT INTEGRATION LAUNCH</div>
-    <div class="date">March 16, 2026</div>
+    <div>INTEGRATION LIVE</div>
+    <div class="date">March 16, 2026 ✓</div>
   </div>
 </div>
 
 <div class="tabs">
-  <button class="tab active" onclick="switchTab('overview')">Overview</button>
-  <button class="tab" onclick="switchTab('ops')">Operations</button>
-  <button class="tab" onclick="switchTab('parts')">Parts</button>
-  <button class="tab" onclick="switchTab('actions')">Action Items</button>
-  <button class="tab" onclick="switchTab('strategy')">Strategy & Expansion</button>
+  <button class="tab active" onclick="switchTab('overview', this)">Overview</button>
+  <button class="tab" onclick="switchTab('ops', this)">Operations</button>
+  <button class="tab" onclick="switchTab('parts', this)">Parts</button>
+  <button class="tab" onclick="switchTab('actions', this)">Action Items</button>
+  <button class="tab" onclick="switchTab('strategy', this)">Strategy & Expansion</button>
 </div>
 
 <!-- OVERVIEW TAB -->
 <div class="panel active" id="tab-overview">
-  <div class="alert-banner">
-    <span class="icon">⛈️</span>
-    <span><strong>Weather Advisory:</strong> Severe storms with horizontal rain impacting Nashville and Evansville. Power outages affecting meeting connectivity. South Bend travel cancelled.</span>
+
+  <div class="alert-banner green">
+    <span class="icon">🎯</span>
+    <span><strong>Network TAT Milestone:</strong> All three TAT KPIs — Overall (1.91d), Cargo (1.82d), and Box Truck (1.96d) — below the 2-day target simultaneously for the first time. Box Truck hits target for the first time in the tracked window.</span>
+  </div>
+
+  <div class="alert-banner amber">
+    <span class="icon">⚠️</span>
+    <span><strong>Adoption Regression:</strong> 69% → 54% (-15pp WoW). Largest single-week drop on record following WK10's record surge. Root cause investigation required. HPD1 and HIN3 continue at zero WOs and are dragging the network average.</span>
+  </div>
+
+  <!-- Scorecard KPI tiles -->
+  <div style="margin-bottom: 24px;">
+    <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-bottom:12px;">WK11 Scorecard — 4 of 6 KPIs HIT</div>
+    <div class="kpi-scorecard-row">
+      <div class="sc-tile">
+        <div class="sc-badge hit">HIT</div>
+        <div class="sc-label">TAT Overall</div>
+        <div class="sc-wk10">WK10: 2.00d</div>
+        <div class="sc-wk11" style="color:var(--green)">1.91d</div>
+        <div class="sc-wow" style="color:var(--green)">−0.09d WoW</div>
+      </div>
+      <div class="sc-tile">
+        <div class="sc-badge hit">HIT</div>
+        <div class="sc-label">TAT Cargo</div>
+        <div class="sc-wk10">WK10: 1.57d</div>
+        <div class="sc-wk11" style="color:var(--green)">1.82d</div>
+        <div class="sc-wow" style="color:var(--red)">+0.25d WoW</div>
+      </div>
+      <div class="sc-tile">
+        <div class="sc-badge hit">HIT ★</div>
+        <div class="sc-label">TAT Box Truck</div>
+        <div class="sc-wk10">WK10: 2.61d</div>
+        <div class="sc-wk11" style="color:var(--green)">1.96d</div>
+        <div class="sc-wow" style="color:var(--green)">−0.65d WoW · First hit</div>
+      </div>
+      <div class="sc-tile">
+        <div class="sc-badge hit">HIT</div>
+        <div class="sc-label">Weekend Deficit</div>
+        <div class="sc-wk10">WK10: 110%</div>
+        <div class="sc-wk11" style="color:var(--green)">220%</div>
+        <div class="sc-wow" style="color:var(--green)">+110pp WoW</div>
+      </div>
+    </div>
+    <div class="kpi-scorecard-row">
+      <div class="sc-tile">
+        <div class="sc-badge miss">MISS</div>
+        <div class="sc-label">Backlog Burndown</div>
+        <div class="sc-wk10">WK10: 2.24d</div>
+        <div class="sc-wk11" style="color:var(--red)">3.77d</div>
+        <div class="sc-wow" style="color:var(--red)">+1.53d WoW</div>
+      </div>
+      <div class="sc-tile">
+        <div class="sc-badge miss">MISS</div>
+        <div class="sc-label">Vendor Rejection</div>
+        <div class="sc-wk10">WK10: 1.2%</div>
+        <div class="sc-wk11" style="color:var(--red)">1.9%</div>
+        <div class="sc-wow" style="color:var(--red)">+0.7pp WoW</div>
+      </div>
+      <div class="sc-tile">
+        <div class="sc-badge info">NOT SCORED</div>
+        <div class="sc-label">Adoption</div>
+        <div class="sc-wk10">WK10: 69%</div>
+        <div class="sc-wk11" style="color:var(--red)">54%</div>
+        <div class="sc-wow" style="color:var(--red)">−15pp WoW</div>
+      </div>
+      <div class="sc-tile">
+        <div class="sc-badge info">PENDING</div>
+        <div class="sc-label">VORR %</div>
+        <div class="sc-wk10">WK10: 79.10%</div>
+        <div class="sc-wk11" style="color:var(--muted)">Pending</div>
+        <div class="sc-wow" style="color:var(--muted)">—</div>
+      </div>
+    </div>
   </div>
 
   <div class="kpi-grid">
     <div class="kpi-card green">
-      <div class="kpi-label">Work Orders WK10</div>
-      <div class="kpi-value">326</div>
-      <div class="kpi-note">Steady monthly growth in volume</div>
+      <div class="kpi-label">Work Orders WK11</div>
+      <div class="kpi-value">286</div>
+      <div class="kpi-note">↓ 40 WoW from WK10 (326)</div>
+      <div class="wow-tag down">−12.3%</div>
     </div>
-    <div class="kpi-card yellow">
+    <div class="kpi-card red">
       <div class="kpi-label">Adoption Rate</div>
-      <div class="kpi-value">69%</div>
-      <div class="kpi-note">Goal: 85% · Gap: 16 pts</div>
+      <div class="kpi-value">54%</div>
+      <div class="kpi-note">Goal: 85% · Gap: 31pp · WK10 was 69%</div>
+      <div class="wow-tag down">−15pp WoW</div>
     </div>
     <div class="kpi-card green">
       <div class="kpi-label">Weekend Coverage</div>
-      <div class="kpi-value">110%</div>
-      <div class="kpi-note">↑ from 37–50% prior range</div>
-    </div>
-    <div class="kpi-card red">
-      <div class="kpi-label">Scanner Investment</div>
-      <div class="kpi-value">$165K</div>
-      <div class="kpi-note">15 units needed · 5 sites at risk</div>
-    </div>
-    <div class="kpi-card blue">
-      <div class="kpi-label">New Hires</div>
-      <div class="kpi-value">4</div>
-      <div class="kpi-note">+3 more within 2 weeks</div>
+      <div class="kpi-value">220%</div>
+      <div class="kpi-note">↑ from 110% WK10 · Best ever</div>
+      <div class="wow-tag up">+110pp</div>
     </div>
     <div class="kpi-card green">
-      <div class="kpi-label">Multi-KPI Hit</div>
-      <div class="kpi-value">✓</div>
-      <div class="kpi-note">First since Week 5 · Excl. MTTR</div>
+      <div class="kpi-label">Box Truck TAT</div>
+      <div class="kpi-value">1.96d</div>
+      <div class="kpi-note">First time below 2d target</div>
+      <div class="wow-tag up">−0.65d WoW</div>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-label">Backlog Burndown</div>
+      <div class="kpi-value">3.77d</div>
+      <div class="kpi-note">Regressed from WK10 best (2.24d)</div>
+      <div class="wow-tag down">+1.53d WoW</div>
+    </div>
+    <div class="kpi-card yellow">
+      <div class="kpi-label">KPIs Hit / Total</div>
+      <div class="kpi-value">4/6</div>
+      <div class="kpi-note">67% hit rate · WK10 was 3/6</div>
+      <div class="wow-tag up">+1 hit WoW</div>
     </div>
   </div>
 
@@ -461,67 +553,70 @@
     <div class="progress-block">
       <div class="progress-header">
         <span class="progress-label">Adoption Rate</span>
-        <span class="progress-pct" style="color:var(--yellow)">69% / 85%</span>
+        <span class="progress-pct" style="color:var(--red)">54% / 85%</span>
       </div>
       <div class="progress-bar">
-        <div class="progress-fill" style="width:81%; background:var(--yellow);"></div>
+        <div class="progress-fill" style="width:63.5%; background:var(--red);"></div>
         <div class="goal-marker" style="left:100%;"></div>
       </div>
-      <div style="font-size:11px; color:var(--muted); margin-top:4px;">Marker = 85% goal</div>
+      <div style="font-size:11px; color:var(--muted); margin-top:4px;">Marker = 85% goal · Down from 69% (WK10)</div>
     </div>
 
     <div class="progress-block">
       <div class="progress-header">
-        <span class="progress-label">Weekend Coverage</span>
-        <span class="progress-pct" style="color:var(--green)">110%</span>
+        <span class="progress-label">TAT Overall</span>
+        <span class="progress-pct" style="color:var(--green)">1.91d ✓ On Target (&lt;2d)</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:95.5%; background:var(--green);"></div>
+      </div>
+    </div>
+
+    <div class="progress-block">
+      <div class="progress-header">
+        <span class="progress-label">Weekend Deficit</span>
+        <span class="progress-pct" style="color:var(--green)">220% ✓ On Target (&gt;85%)</span>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" style="width:100%; background:var(--green);"></div>
       </div>
     </div>
 
-    <div class="progress-block">
+    <div class="progress-block" style="margin-bottom:0;">
       <div class="progress-header">
-        <span class="progress-label">Technician Weekend Coverage</span>
-        <span class="progress-pct" style="color:var(--green)">99%</span>
+        <span class="progress-label">Backlog Burndown</span>
+        <span class="progress-pct" style="color:var(--red)">3.77d — Target &lt;1d</span>
       </div>
       <div class="progress-bar">
-        <div class="progress-fill" style="width:99%; background:var(--green);"></div>
+        <div class="progress-fill" style="width:26.5%; background:var(--red);"></div>
       </div>
-    </div>
-
-    <div class="progress-block" style="margin-bottom:0">
-      <div class="progress-header">
-        <span class="progress-label">Parts Replacement Rate</span>
-        <span class="progress-pct" style="color:var(--accent2)">89.6%</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width:89.6%; background:var(--accent2);"></div>
-      </div>
+      <div style="font-size:11px; color:var(--muted); margin-top:4px;">Regressed from 2.24d best · HCL2 (16 SM rescheds) primary driver</div>
     </div>
   </div>
 
   <div class="section-grid">
     <div class="card">
-      <h3>🏆 Key Achievements</h3>
+      <h3>🏆 WK11 Achievements</h3>
       <ul class="item-list">
-        <li><span class="dot green"></span>First multi-KPI hit since Week 5 — without MTTR</li>
-        <li><span class="dot green"></span>4 new technicians onboarded; 3 more incoming</li>
-        <li><span class="dot green"></span>Weekend coverage reached 110% (was 37–50%)</li>
-        <li><span class="dot green"></span>HDY1 achieved green status</li>
-        <li><span class="dot green"></span>HLA2 leakage aligning with completed work orders</li>
-        <li><span class="dot blue"></span>Eugene transitioning HTC → HCL2 successfully</li>
+        <li><span class="dot green"></span><strong>Box Truck TAT hits target for first time</strong> — 2.61d → 1.96d</li>
+        <li><span class="dot green"></span>All 3 TAT KPIs on target simultaneously — first time in tracked window</li>
+        <li><span class="dot green"></span>Weekend Deficit 220% — strongest reading on record</li>
+        <li><span class="dot green"></span>HSL1 breakout: 4 → 23 WOs, med TAT 0.45d, zero leakage</li>
+        <li><span class="dot green"></span>HHO3 volume surge: 19 → 41 WOs, zero leakage this week</li>
+        <li><span class="dot green"></span>HDT3 + HMS2 third/second techs started 3/16</li>
+        <li><span class="dot green"></span>Direct integration went live 3/16 as planned</li>
       </ul>
     </div>
     <div class="card">
-      <h3>⚠️ Active Challenges</h3>
+      <h3>⚠️ WK11 Active Challenges</h3>
       <ul class="item-list">
-        <li><span class="dot red"></span>5 sites at risk from scanner equipment gap ($165K need)</li>
-        <li><span class="dot red"></span>Auto-rejections from premature direct integration forcing</li>
-        <li><span class="dot yellow"></span>Adoption at 69% vs 85% goal — 16pt gap</li>
-        <li><span class="dot yellow"></span>HDY1 may see continued performance fluctuation</li>
-        <li><span class="dot yellow"></span>Box truck turnaround times still need improvement</li>
-        <li><span class="dot yellow"></span>One-off parts with 56+ day lead times</li>
+        <li><span class="dot red"></span>Adoption -15pp to 54% — root cause investigation needed</li>
+        <li><span class="dot red"></span>HCL2: 16 SM reschedulings (record high) — solo tech capacity constraint</li>
+        <li><span class="dot red"></span>Backlog Burndown regressed to 3.77d (+1.53d WoW)</li>
+        <li><span class="dot red"></span>HIN3 + HPD1: zero WOs, 14 combined leaked, no coverage</li>
+        <li><span class="dot yellow"></span>Vendor Rejection Rate ticked back to 1.9% — BJS integration not yet in prod</li>
+        <li><span class="dot yellow"></span>HMS2: 8 leaked WOs all to LDOG despite new tech on-site</li>
+        <li><span class="dot yellow"></span>HDY1 avg TAT 4.23d — aged WO cluster despite solo coverage</li>
       </ul>
     </div>
   </div>
@@ -531,81 +626,68 @@
 <div class="panel" id="tab-ops">
   <div class="section-grid">
     <div class="card">
-      <h3>👥 Staffing Update</h3>
-      <div class="stat-row"><span class="stat-key">New Technicians (This Week)</span><span class="stat-val" style="color:var(--green)">+4</span></div>
-      <div class="stat-row"><span class="stat-key">Hires Incoming (Next 2 Wks)</span><span class="stat-val" style="color:var(--green)">+3</span></div>
-      <div class="stat-row"><span class="stat-key">Weekend Tech Coverage</span><span class="stat-val" style="color:var(--green)">99%</span></div>
-      <div class="stat-row"><span class="stat-key">Weekend Deficit Coverage</span><span class="stat-val" style="color:var(--green)">110%</span></div>
-      <div class="stat-row"><span class="stat-key">Previous Coverage Range</span><span class="stat-val" style="color:var(--red)">37–50%</span></div>
-      <div class="stat-row"><span class="stat-key">New Weekend Additions</span><span class="stat-val">Jess + Chris</span></div>
+      <h3>👥 Staffing Update — WK11</h3>
+      <div class="stat-row"><span class="stat-key">Active Techs (WK11)</span><span class="stat-val" style="color:var(--green)">21</span></div>
+      <div class="stat-row"><span class="stat-key">HDT3 New Tech</span><span class="stat-val" style="color:var(--green)">Started 3/16</span></div>
+      <div class="stat-row"><span class="stat-key">HMS2 2nd Tech</span><span class="stat-val" style="color:var(--green)">Started 3/16</span></div>
+      <div class="stat-row"><span class="stat-key">HCL2 2nd Tech</span><span class="stat-val" style="color:var(--yellow)">Offer out ~3/25</span></div>
+      <div class="stat-row"><span class="stat-key">HIN3 New Tech</span><span class="stat-val" style="color:var(--yellow)">~2 weeks (paperwork)</span></div>
+      <div class="stat-row"><span class="stat-key">HDY1 Open Req</span><span class="stat-val" style="color:var(--red)">Active — fielding candidates</span></div>
+      <div class="stat-row"><span class="stat-key">Weekend Deficit</span><span class="stat-val" style="color:var(--green)">220%</span></div>
     </div>
 
     <div class="card">
-      <h3>📦 Volume Trend</h3>
-      <div class="bar-chart" id="vol-chart">
-        <div class="bar-col">
-          <div class="bar-fill" style="height:50%; background:var(--surface2);"></div>
-          <div class="bar-label">W7</div>
+      <h3>📦 Volume Trend WK7–WK11</h3>
+      <div style="display:flex; align-items:flex-end; gap:8px; height:80px; padding:0 4px; margin-bottom:12px;">
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:48%; background:var(--surface2); border-radius:4px 4px 0 0;"></div>
+          <div style="font-size:10px; color:var(--muted); font-family:'DM Mono',monospace;">W7<br>157</div>
         </div>
-        <div class="bar-col">
-          <div class="bar-fill" style="height:60%; background:var(--surface2);"></div>
-          <div class="bar-label">W8</div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:59%; background:var(--surface2); border-radius:4px 4px 0 0;"></div>
+          <div style="font-size:10px; color:var(--muted); font-family:'DM Mono',monospace;">W8<br>194</div>
         </div>
-        <div class="bar-col">
-          <div class="bar-fill" style="height:75%; background:var(--surface2);"></div>
-          <div class="bar-label">W9</div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:47%; background:var(--surface2); border-radius:4px 4px 0 0;"></div>
+          <div style="font-size:10px; color:var(--muted); font-family:'DM Mono',monospace;">W9<br>153</div>
         </div>
-        <div class="bar-col">
-          <div class="bar-fill" style="height:100%; background:linear-gradient(to top, var(--accent), var(--accent2));"></div>
-          <div class="bar-label" style="color:var(--accent2)">W10</div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:100%; background:linear-gradient(to top, var(--accent), var(--accent2)); border-radius:4px 4px 0 0;"></div>
+          <div style="font-size:10px; color:var(--accent2); font-family:'DM Mono',monospace;">W10<br>326</div>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:87%; background:linear-gradient(to top, #7c3aed, #a78bfa); border-radius:4px 4px 0 0;"></div>
+          <div style="font-size:10px; color:#a78bfa; font-family:'DM Mono',monospace;">W11<br>286</div>
         </div>
       </div>
-      <div style="margin-top:12px;">
-        <div class="stat-row"><span class="stat-key">WK10 Work Orders</span><span class="stat-val" style="color:var(--accent2)">326</span></div>
-        <div class="stat-row"><span class="stat-key">Adoption (Scorecard)</span><span class="stat-val" style="color:var(--yellow)">69%</span></div>
-        <div class="stat-row"><span class="stat-key">Internal Goal</span><span class="stat-val" style="color:var(--muted)">85%</span></div>
-      </div>
+      <div class="stat-row"><span class="stat-key">WK11 Work Orders</span><span class="stat-val" style="color:#a78bfa">286</span></div>
+      <div class="stat-row"><span class="stat-key">WoW Change</span><span class="stat-val" style="color:var(--red)">−40 (−12.3%)</span></div>
+      <div class="stat-row"><span class="stat-key">Adoption (Scorecard)</span><span class="stat-val" style="color:var(--red)">54%</span></div>
     </div>
 
     <div class="card">
-      <h3>🏭 Site Status</h3>
+      <h3>🏭 Station Highlights — WK11</h3>
       <ul class="item-list">
-        <li><span class="dot green"></span><strong>HDY1:</strong> Barely green · ongoing support needed</li>
-        <li><span class="dot yellow"></span><strong>HLA2:</strong> Highest leakage but also highest volume</li>
-        <li><span class="dot blue"></span><strong>HCL2:</strong> Eugene transitioning from HTC — progressing</li>
-        <li><span class="dot red"></span><strong>5 Sites:</strong> At risk due to scanner equipment gap</li>
+        <li><span class="dot green"></span><strong>HLA2:</strong> 54 WOs — season best single-week. 11 leaked (ARMA ×9)</li>
+        <li><span class="dot green"></span><strong>HSL1:</strong> 4 → 23 WOs, zero leakage, med TAT 0.45d · Breakout week</li>
+        <li><span class="dot green"></span><strong>HHO3:</strong> 41 WOs, zero leakage · Approaching 85% adoption</li>
+        <li><span class="dot red"></span><strong>HCL2:</strong> 16 SM rescheds (record) · 2nd tech ~3/25</li>
+        <li><span class="dot red"></span><strong>HPD1:</strong> 0 WOs, 7 leaked (all JDTC) · Emergency intervention</li>
+        <li><span class="dot red"></span><strong>HIN3:</strong> 0 WOs, 7 leaked (JBXL ×6) · No coverage</li>
+        <li><span class="dot yellow"></span><strong>HMS2:</strong> TAT improved 11.64d → 0.94d but 8 leaked (all LDOG)</li>
+        <li><span class="dot yellow"></span><strong>HMK4:</strong> Med TAT regressed 0.72d → 2.53d · Investigate</li>
       </ul>
     </div>
 
     <div class="card">
       <h3>🔗 Integration Status</h3>
       <ul class="item-list">
-        <li><span class="dot yellow"></span>Launch: <strong>Monday, March 16th</strong> — three-phase rollout</li>
-        <li><span class="dot red"></span>Auto-rejections from premature integration forcing</li>
-        <li><span class="dot yellow"></span>Config not pushed to prod when Amazon expected</li>
-        <li><span class="dot blue"></span>Smartsheet maintained as rollback option</li>
-        <li><span class="dot blue"></span>Amazon IT already pushing work orders via direct integration</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>🔍 Scanner Situation</h3>
-      <div class="stat-row"><span class="stat-key">Sites at Risk</span><span class="stat-val" style="color:var(--red)">5</span></div>
-      <div class="stat-row"><span class="stat-key">Total Scanners Needed</span><span class="stat-val">15 units</span></div>
-      <div class="stat-row"><span class="stat-key">Cost Per Unit</span><span class="stat-val">$11–15K</span></div>
-      <div class="stat-row"><span class="stat-key">Estimated Total</span><span class="stat-val" style="color:var(--red)">~$165,000</span></div>
-      <div class="stat-row"><span class="stat-key">DSP Sentiment</span><span class="stat-val" style="color:var(--yellow)">Frustrated</span></div>
-      <div class="stat-row"><span class="stat-key">Cost-share Discussion</span><span class="stat-val">Mike + Phil + Brooke</span></div>
-    </div>
-
-    <div class="card">
-      <h3>📋 Announcements</h3>
-      <ul class="item-list">
-        <li><span class="dot blue"></span>Direct Integration: 3-phase rollout with ISS platform on 3/16</li>
-        <li><span class="dot yellow"></span>Severe storms — Nashville & Evansville power outages</li>
-        <li><span class="dot yellow"></span>South Bend travel plans cancelled</li>
-        <li><span class="dot blue"></span>Product team building demo video for internal sharing</li>
-        <li><span class="dot blue"></span>David's 4-month field initiative for tech training underway</li>
+        <li><span class="dot green"></span><strong>Direct Integration launched 3/16</strong> — ISS Phase 1 live</li>
+        <li><span class="dot yellow"></span>BJS config not yet pushed to production at all stations</li>
+        <li><span class="dot yellow"></span>Vendor Rejection Rate 1.9% — integration-related rejections continue until config deployed per station</li>
+        <li><span class="dot blue"></span>ISS launch rolling out station-by-station per wave schedule</li>
+        <li><span class="dot blue"></span>Amazon informing DSPs to stop using Smartsheets as ISS launches</li>
+        <li><span class="dot blue"></span>Monitor rejection rate by station to confirm which sites are live</li>
       </ul>
     </div>
   </div>
@@ -615,91 +697,78 @@
 <div class="panel" id="tab-parts">
   <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr);">
     <div class="kpi-card blue">
-      <div class="kpi-label">Total WOs (WK10)</div>
-      <div class="kpi-value">326</div>
-      <div class="kpi-note">All work orders completed</div>
+      <div class="kpi-label">Towbook Calls (WK11)</div>
+      <div class="kpi-value">227</div>
+      <div class="kpi-note">11 active stations</div>
     </div>
     <div class="kpi-card yellow">
-      <div class="kpi-label">Parts Required</div>
-      <div class="kpi-value">89.6%</div>
-      <div class="kpi-note">Of all work orders</div>
+      <div class="kpi-label">Top System</div>
+      <div class="kpi-value">PM</div>
+      <div class="kpi-note">192 PM/Inspection touches · 85% of calls</div>
     </div>
-    <div class="kpi-card blue">
-      <div class="kpi-label">Avg Parts / WO</div>
-      <div class="kpi-value">1.91</div>
-      <div class="kpi-note">Per work order average</div>
+    <div class="kpi-card red">
+      <div class="kpi-label">New Repair Signal</div>
+      <div class="kpi-value">10×</div>
+      <div class="kpi-note">Backing Plate — Front Brake (HDT3 ×8)</div>
     </div>
     <div class="kpi-card green">
-      <div class="kpi-label">Common Parts</div>
-      <div class="kpi-value">72.2%</div>
-      <div class="kpi-note">27.8% repair / specialized</div>
+      <div class="kpi-label">Top Consumable</div>
+      <div class="kpi-value">26×</div>
+      <div class="kpi-note">Cabin Air Filter · Stock at all sites</div>
     </div>
   </div>
 
   <div class="section-grid">
     <div class="card">
-      <h3>🔧 Parts Breakdown</h3>
-      <div class="donut-wrap">
-        <svg class="donut-svg" width="120" height="120" viewBox="0 0 120 120">
-          <circle cx="60" cy="60" r="46" fill="none" stroke="#1e293b" stroke-width="20"/>
-          <!-- Common parts: 72.2% = 289/400 of circumference ~= 289 -->
-          <circle cx="60" cy="60" r="46" fill="none" stroke="#3b82f6" stroke-width="20"
-            stroke-dasharray="289 289" stroke-dashoffset="72"
-            transform="rotate(-90 60 60)" stroke-linecap="butt"/>
-          <!-- Specialized: 27.8% -->
-          <circle cx="60" cy="60" r="46" fill="none" stroke="#06b6d4" stroke-width="20"
-            stroke-dasharray="111 289" stroke-dashoffset="361"
-            transform="rotate(-90 60 60)" stroke-linecap="butt"/>
-          <text x="60" y="56" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="700" font-family="DM Mono">1.91</text>
-          <text x="60" y="70" text-anchor="middle" fill="#64748b" font-size="9" font-family="DM Sans">avg/WO</text>
-        </svg>
-        <div class="donut-legend">
-          <div class="legend-item">
-            <div class="legend-swatch" style="background:var(--accent)"></div>
-            <div>
-              <div class="legend-val">72.2%</div>
-              <div class="legend-label">Common Parts</div>
-            </div>
-          </div>
-          <div class="legend-item">
-            <div class="legend-swatch" style="background:var(--accent2)"></div>
-            <div>
-              <div class="legend-val">27.8%</div>
-              <div class="legend-label">Repair / Specialized</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h3>🔧 WK11 Top Repair Systems</h3>
+      <div class="stat-row"><span class="stat-key">PM / Inspection</span><span class="stat-val" style="color:var(--accent2)">192 touches</span></div>
+      <div class="stat-row"><span class="stat-key">Fluids</span><span class="stat-val">72 touches</span></div>
+      <div class="stat-row"><span class="stat-key">Electrical</span><span class="stat-val">53 touches</span></div>
+      <div class="stat-row"><span class="stat-key">Engine / CEL</span><span class="stat-val">48 touches</span></div>
+      <div class="stat-row"><span class="stat-key">Brakes</span><span class="stat-val">48 touches</span></div>
+      <div class="stat-row"><span class="stat-key">Body / Collision</span><span class="stat-val">34 touches</span></div>
+      <div class="stat-row"><span class="stat-key">Transmission</span><span class="stat-val">15 touches</span></div>
     </div>
 
     <div class="card">
-      <h3>🚚 Supply Chain</h3>
+      <h3>📦 WK11 Stocking Signals</h3>
       <ul class="item-list">
-        <li><span class="dot blue"></span>Working on delivery systems with Isuzu and Hino dealers</li>
-        <li><span class="dot yellow"></span>Negotiating better stocking arrangements with high-volume suppliers</li>
-        <li><span class="dot red"></span>One-off parts causing 56+ day lead times</li>
-        <li><span class="dot green"></span>Common parts inventory generally well-managed</li>
+        <li><span class="dot red"></span><strong>Backing Plate – Front Brake (10×):</strong> New signal — HDT3 accounts for 8. New tech encountering deferred brake work. Watch WK12.</li>
+        <li><span class="dot red"></span><strong>Battery & Cables (8×, HTP2):</strong> All at single station — tractor fleet battery cycle. Confirm scheduled vs failure-driven.</li>
+        <li><span class="dot yellow"></span><strong>Ether Injector Assembly (5×):</strong> Recurring 2nd week — 4 stations. Stock at all tractor-fleet sites.</li>
+        <li><span class="dot yellow"></span><strong>Door Assembly (5×):</strong> HDT3 + HLA2 recurring — physical damage pattern.</li>
+        <li><span class="dot green"></span><strong>Cabin Air Filter (26×):</strong> Consistent — stock everywhere, especially HHO3 (9×).</li>
+        <li><span class="dot green"></span><strong>Hydraulic Brake Fluid (19×):</strong> Consistent — HAU1 (8×), HCL2 (7×).</li>
       </ul>
     </div>
 
     <div class="card full-card">
-      <h3>📊 Parts Utilization Stats</h3>
-      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+      <h3>📊 WoW Parts Comparison — Key Consumables</h3>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; font-size:12px;">
         <div>
-          <div class="stat-row"><span class="stat-key">WOs with Parts</span><span class="stat-val">~292</span></div>
-          <div class="stat-row"><span class="stat-key">WOs w/o Parts</span><span class="stat-val">~34</span></div>
+          <div style="font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:8px; font-weight:600;">✓ Stock Consistently</div>
+          <div class="stat-row"><span class="stat-key">Cabin Air Filter</span><span class="stat-val">58→26</span></div>
+          <div class="stat-row"><span class="stat-key">Hydraulic Brake Fluid</span><span class="stat-val">23→19</span></div>
+          <div class="stat-row"><span class="stat-key">Auto Trans Fluid</span><span class="stat-val">18→13</span></div>
+          <div class="stat-row"><span class="stat-key">Engine Oil Filter</span><span class="stat-val">17→13</span></div>
+          <div class="stat-row"><span class="stat-key">Additive – Engine Oil</span><span class="stat-val">9→11 ↑</span></div>
+          <div class="stat-row"><span class="stat-key">Fitting – Differential</span><span class="stat-val">6→9 ↑</span></div>
         </div>
         <div>
-          <div class="stat-row"><span class="stat-key">Total Parts Installed</span><span class="stat-val">~623</span></div>
-          <div class="stat-row"><span class="stat-key">Est. Common Parts</span><span class="stat-val">~450</span></div>
+          <div style="font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:8px; font-weight:600;">~ Monitor (Volatile)</div>
+          <div class="stat-row"><span class="stat-key">Conditioner – Brake Fluid</span><span class="stat-val">23→1 ↓</span></div>
+          <div class="stat-row"><span class="stat-key">Lamp – Marker</span><span class="stat-val">12→2 ↓</span></div>
         </div>
         <div>
-          <div class="stat-row"><span class="stat-key">Est. Specialized</span><span class="stat-val">~173</span></div>
-          <div class="stat-row"><span class="stat-key">Avg Parts / WO (all)</span><span class="stat-val">1.91</span></div>
+          <div style="font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:8px; font-weight:600;">↓ Review (Dropped WK11)</div>
+          <div class="stat-row"><span class="stat-key">Housing – Cabin Air Filter</span><span class="stat-val">19→0</span></div>
+          <div class="stat-row"><span class="stat-key">Element – Engine Air Filter</span><span class="stat-val">11→0</span></div>
         </div>
         <div>
-          <div class="stat-row"><span class="stat-key">Key Dealer Network</span><span class="stat-val">Isuzu, Hino</span></div>
-          <div class="stat-row"><span class="stat-key">Extended Lead Times</span><span class="stat-val" style="color:var(--red)">56+ days</span></div>
+          <div style="font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:8px; font-weight:600;">↻ Recurring Repair</div>
+          <div class="stat-row"><span class="stat-key">Ether Injector Assy</span><span class="stat-val">8→5 (4 sites)</span></div>
+          <div class="stat-row"><span class="stat-key">Door Assy – Cab/Front</span><span class="stat-val">6→5 (recurring)</span></div>
+          <div class="stat-row"><span class="stat-key">Rotor – Disc Brakes</span><span class="stat-val">6→3 (HHO3)</span></div>
         </div>
       </div>
     </div>
@@ -709,70 +778,102 @@
 <!-- ACTION ITEMS TAB -->
 <div class="panel" id="tab-actions">
   <div class="card" style="margin-bottom:20px;">
-    <h3>📋 Action Items — Week 10</h3>
+    <h3>📋 Action Items — WK11 (Carried + New)</h3>
     <table class="actions-table">
       <thead>
         <tr>
           <th>Owner</th>
           <th>Action Item</th>
           <th>Category</th>
-          <th>Due</th>
+          <th>Status / Due</th>
         </tr>
       </thead>
       <tbody>
+        <!-- NEW WK11 -->
         <tr>
-          <td><span class="owner-pill">Mike</span></td>
-          <td>Engage Phil regarding financial support splitting for scanners</td>
-          <td>Scanners</td>
-          <td><span class="due-pill urgent">This Week</span></td>
+          <td><span class="owner-pill">David / Ash</span></td>
+          <td>Investigate adoption regression — 69% → 54% (-15pp). Confirm root cause before WBR: data timing issue, DSP behavior change, or HPD1/HIN3 zero-WO drag.</td>
+          <td>Adoption</td>
+          <td><span class="due-pill urgent">WK11 NEW · 3/18</span></td>
+        </tr>
+        <tr>
+          <td><span class="owner-pill">David / Ash</span></td>
+          <td>HCL2 backlog — 16 SM reschedulings (record high). Second tech offer out, ~3/25 onboard. Eugene cross-covering. Investigate specific aged WOs driving 4.39d avg TAT.</td>
+          <td>TAT / Backlog</td>
+          <td><span class="due-pill urgent">WK11 NEW · 3/25</span></td>
+        </tr>
+        <tr>
+          <td><span class="owner-pill">Kooner Ops</span></td>
+          <td>HPD1 emergency intervention — 0 Kooner WOs WK11, 7 leaked (all JDTC). Tech coverage in Portland is the root blocker. Hiring or subcontract needed urgently.</td>
+          <td>Coverage</td>
+          <td><span class="due-pill urgent">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><span class="owner-pill">Kooner Ops</span></td>
+          <td>HIN3 tech paperwork — zero WOs again WK11, 7 leaked (JBXL ×6). Confirm paperwork completion timeline. Outreach to JBXL to hold WOs until coverage is active.</td>
+          <td>Coverage</td>
+          <td><span class="due-pill urgent">~3/25</span></td>
         </tr>
         <tr>
           <td><span class="owner-pill">Brooke</span></td>
-          <td>Follow up with Amy on potential scanner cost-sharing input; include Mark, Reagan, Hunter</td>
-          <td>Scanners</td>
-          <td><span class="due-pill urgent">This Week</span></td>
+          <td>HMS2 / LDOG outreach — 8 WK11 leaks all to LDOG. 2nd tech started 3/16. Proactive call before WK12 to recapture volume.</td>
+          <td>Adoption</td>
+          <td><span class="due-pill soon">Before WK12</span></td>
         </tr>
         <tr>
           <td><span class="owner-pill">Brooke</span></td>
-          <td>Submit brokerage fee proposal <span style="color:var(--green); font-weight:600;">✓ Submitted @ 15%</span></td>
-          <td>Finance</td>
-          <td><span class="due-pill" style="background:rgba(16,185,129,0.15); color:#6ee7b7; border:1px solid rgba(16,185,129,0.3);">Done</span></td>
-        </tr>
-        <tr>
-          <td><span class="owner-pill">Hunter</span></td>
-          <td>Share ISS launch wave schedule and resource guide</td>
-          <td>Integration</td>
-          <td><span class="due-pill soon">Before 3/16</span></td>
+          <td>ORMP (HTP2) proactive outreach — silent 5+ weeks, last response Feb 9, avg 2.3/5. Volume dropped 58→23 WoW. Proactive outreach before WK12 WBR.</td>
+          <td>Sentiment</td>
+          <td><span class="due-pill soon">Before WK12</span></td>
         </tr>
         <tr>
           <td><span class="owner-pill">Brooke</span></td>
-          <td>Attend 1–2 DSP training sessions to understand platform workflow</td>
-          <td>Integration</td>
-          <td><span class="due-pill ongoing">Ongoing</span></td>
+          <td>ARMA parts backorder (HLA2) — survey confirms back-door back-orders grounding trucks. Escalate parts stocking with Kooner ops to protect 54-WO volume at HLA2.</td>
+          <td>Parts</td>
+          <td><span class="due-pill soon">This Week</span></td>
         </tr>
+        <!-- CARRIED FROM WK10 -->
         <tr>
-          <td><span class="owner-pill">Product</span></td>
-          <td>Create demo video for internal sharing of platform workflow</td>
+          <td><span class="owner-pill">Brooke / Hunter</span></td>
+          <td>Vendor Rejection Rate — BJS config not yet in production at all stations. Track per-station rejection rate to confirm which ISS sites are live. Rate should improve station-by-station.</td>
           <td>Integration</td>
-          <td><span class="due-pill ongoing">TBD</span></td>
+          <td><span class="due-pill ongoing">Carried · Ongoing</span></td>
         </tr>
         <tr>
           <td><span class="owner-pill">David</span></td>
-          <td>Continue 4-month field initiative for technician training and placement</td>
+          <td>HDY1 second tech — open req active. Avg TAT 4.23d despite 1.32d median — aged WO cluster present. Night shift active but solo coverage cannot sustain.</td>
+          <td>Staffing</td>
+          <td><span class="due-pill ongoing">Carried · Ongoing</span></td>
+        </tr>
+        <tr>
+          <td><span class="owner-pill">Mike</span></td>
+          <td>Scanner cost-share discussion with Phil — 5 sites at risk, 15 units needed, ~$165K total.</td>
+          <td>Scanners</td>
+          <td><span class="due-pill ongoing">Carried</span></td>
+        </tr>
+        <tr>
+          <td><span class="owner-pill">David</span></td>
+          <td>Continue 4-month field initiative for technician training and placement network-wide.</td>
           <td>Ops</td>
-          <td><span class="due-pill ongoing">4-month</span></td>
+          <td><span class="due-pill ongoing">Carried · 4-month</span></td>
         </tr>
         <tr>
           <td><span class="owner-pill">All</span></td>
-          <td>Establish parts delivery systems with Isuzu and Hino dealer network; negotiate stocking arrangements</td>
+          <td>Parts dealer network (Isuzu + Hino) — stocking arrangements and delivery system development.</td>
           <td>Parts</td>
-          <td><span class="due-pill ongoing">Ongoing</span></td>
+          <td><span class="due-pill ongoing">Carried · Ongoing</span></td>
         </tr>
         <tr>
-          <td><span class="owner-pill">Vishal</span></td>
-          <td>Confirm contract modification feasibility pending Brooke's fee structure submission</td>
+          <td><span class="owner-pill">Brooke</span></td>
+          <td>Attend 1–2 DSP ISS training sessions to understand direct integration workflow firsthand.</td>
+          <td>Integration</td>
+          <td><span class="due-pill ongoing">Carried · Ongoing</span></td>
+        </tr>
+        <tr>
+          <td><span class="owner-pill">Brooke</span></td>
+          <td>Brokerage fee proposal — submitted at 15%. Awaiting Vishal response on contract modification feasibility.</td>
           <td>Finance</td>
-          <td><span class="due-pill soon">After EOW</span></td>
+          <td><span class="due-pill done">Done · Pending Vishal</span></td>
         </tr>
       </tbody>
     </table>
@@ -781,31 +882,30 @@
   <div class="section-grid">
     <div class="card">
       <h3>By Owner</h3>
-      <div class="stat-row"><span class="stat-key">Brooke</span><span class="stat-val">3 items</span></div>
-      <div class="stat-row"><span class="stat-key">Mike</span><span class="stat-val">1 item</span></div>
-      <div class="stat-row"><span class="stat-key">Hunter</span><span class="stat-val">1 item</span></div>
-      <div class="stat-row"><span class="stat-key">David</span><span class="stat-val">1 item</span></div>
-      <div class="stat-row"><span class="stat-key">Vishal</span><span class="stat-val">1 item</span></div>
-      <div class="stat-row"><span class="stat-key">Product Team</span><span class="stat-val">1 item</span></div>
-      <div class="stat-row"><span class="stat-key">All</span><span class="stat-val">1 item</span></div>
+      <div class="stat-row"><span class="stat-key">David / Ash</span><span class="stat-val">2 new</span></div>
+      <div class="stat-row"><span class="stat-key">Brooke</span><span class="stat-val">4 items (2 new + 2 carried)</span></div>
+      <div class="stat-row"><span class="stat-key">Kooner Ops</span><span class="stat-val">2 urgent new</span></div>
+      <div class="stat-row"><span class="stat-key">Brooke / Hunter</span><span class="stat-val">1 carried</span></div>
+      <div class="stat-row"><span class="stat-key">Mike</span><span class="stat-val">1 carried</span></div>
+      <div class="stat-row"><span class="stat-key">David</span><span class="stat-val">2 carried</span></div>
     </div>
     <div class="card">
       <h3>By Priority</h3>
       <div class="stat-row">
-        <span class="stat-key">This Week / EOW</span>
-        <span class="due-pill urgent" style="font-size:12px;">2 urgent</span>
+        <span class="stat-key">Urgent / This Week</span>
+        <span class="due-pill urgent" style="font-size:12px;">4 urgent</span>
       </div>
       <div class="stat-row">
-        <span class="stat-key">Before Launch (3/16)</span>
-        <span class="due-pill soon" style="font-size:12px;">1 soon</span>
+        <span class="stat-key">Before WK12 / Soon</span>
+        <span class="due-pill soon" style="font-size:12px;">3 soon</span>
       </div>
       <div class="stat-row">
-        <span class="stat-key">After EOW</span>
-        <span class="due-pill soon" style="font-size:12px;">1 soon</span>
+        <span class="stat-key">Ongoing / Carried</span>
+        <span class="due-pill ongoing" style="font-size:12px;">5 ongoing</span>
       </div>
       <div class="stat-row">
-        <span class="stat-key">Ongoing / TBD</span>
-        <span class="due-pill ongoing" style="font-size:12px;">4 ongoing</span>
+        <span class="stat-key">Submitted / Done</span>
+        <span class="due-pill done" style="font-size:12px;">1 done</span>
       </div>
     </div>
   </div>
@@ -815,110 +915,112 @@
 <div class="panel" id="tab-strategy">
 
   <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr);">
-    <div class="kpi-card blue">
-      <div class="kpi-label">Integration Launch</div>
-      <div class="kpi-value">3/16</div>
-      <div class="kpi-note">Direct integration — 3-phase rollout</div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Integration Status</div>
+      <div class="kpi-value">LIVE</div>
+      <div class="kpi-note">Direct integration launched 3/16 · ISS Phase 1 active</div>
     </div>
     <div class="kpi-card green">
       <div class="kpi-label">Network Stations</div>
-      <div class="kpi-value">11+</div>
-      <div class="kpi-note">HDY1, HTP2, HDT3, HIN3, HCT2, HMS2, HHO3, HMK4, HAU1, HLA2, HPD1</div>
+      <div class="kpi-value">13</div>
+      <div class="kpi-note">11 active · HIN3 + HPD1 zero coverage</div>
     </div>
     <div class="kpi-card yellow">
-      <div class="kpi-label">Technician Pipeline</div>
-      <div class="kpi-value">+7</div>
-      <div class="kpi-note">4 onboarded · 3 scheduled</div>
+      <div class="kpi-label">Tech Pipeline</div>
+      <div class="kpi-value">21</div>
+      <div class="kpi-note">Active WK11 · HCL2 + HIN3 offers pending</div>
     </div>
     <div class="kpi-card red">
-      <div class="kpi-label">Scanner Investment</div>
+      <div class="kpi-label">Scanner Need</div>
       <div class="kpi-value">$165K</div>
-      <div class="kpi-note">Pending cost-share discussion</div>
+      <div class="kpi-note">5 sites at risk · Cost-share discussion ongoing</div>
     </div>
   </div>
 
   <div class="section-grid">
-
     <div class="card">
-      <h3>🚀 Direct Integration Rollout</h3>
+      <h3>🚀 Direct Integration — Post-Launch</h3>
       <ul class="item-list">
-        <li><span class="dot blue"></span><strong>Launch:</strong> Monday, March 16, 2026</li>
-        <li><span class="dot blue"></span>Three-phase rollout with ISS platform integration</li>
-        <li><span class="dot blue"></span>Amazon IT already pushing WOs via direct integration ahead of launch</li>
-        <li><span class="dot yellow"></span>Smartsheet maintained as rollback option during transition</li>
-        <li><span class="dot yellow"></span>Brooke attending 1–2 DSP training sessions to understand workflow</li>
-        <li><span class="dot blue"></span>Product team creating demo video for internal sharing</li>
-        <li><span class="dot green"></span>Hunter sharing ISS launch wave schedule + resource guide before 3/16</li>
+        <li><span class="dot green"></span><strong>Launched 3/16</strong> — three-phase ISS rollout underway</li>
+        <li><span class="dot yellow"></span>BJS config not yet pushed to production at all stations — causing continued rejections</li>
+        <li><span class="dot yellow"></span>Vendor Rejection Rate 1.9% — will resolve station-by-station as ISS launches</li>
+        <li><span class="dot blue"></span>Amazon informing DSPs to stop Smartsheets as each station goes live</li>
+        <li><span class="dot blue"></span>Brooke attending DSP training sessions to understand platform workflow</li>
+        <li><span class="dot blue"></span>Monitor rejection rate per station to track ISS deployment progress</li>
       </ul>
     </div>
 
     <div class="card">
-      <h3>🌐 Network Expansion</h3>
+      <h3>🌐 Network Coverage Priorities</h3>
       <ul class="item-list">
-        <li><span class="dot green"></span><strong>HPD1</strong> — New station added to network (WK10)</li>
-        <li><span class="dot blue"></span>Eugene transitioning operations from HTC → <strong>HCL2</strong></li>
-        <li><span class="dot green"></span>Weekend coverage now at <strong>99%</strong> across technician network</li>
-        <li><span class="dot yellow"></span>HLA2 highest volume station — leakage being tracked closely</li>
-        <li><span class="dot blue"></span>David's 4-month field initiative: technician training + placement network-wide</li>
-        <li><span class="dot yellow"></span>South Bend expansion paused this week due to weather</li>
+        <li><span class="dot red"></span><strong>HPD1</strong> — CRITICAL: 0 WOs all season, 7 WK11 leaks. Portland tech hiring/subcontract needed immediately.</li>
+        <li><span class="dot red"></span><strong>HIN3</strong> — 0 WOs WK11, paperwork pending. New tech ~2 weeks. JBXL outreach to hold WOs.</li>
+        <li><span class="dot yellow"></span><strong>HCL2</strong> — 2nd tech offer out ~3/25. 16 SM rescheds. Eugene cross-covering.</li>
+        <li><span class="dot yellow"></span><strong>HDY1</strong> — Open req active. Night shift holding but solo coverage unsustainable long-term.</li>
+        <li><span class="dot green"></span><strong>HMS2</strong> — 2nd tech 3/16, TAT dramatically improved. LDOG leakage engagement needed.</li>
+        <li><span class="dot green"></span><strong>HDT3</strong> — 3rd tech started 3/16. First week of ramp. Highest parts activity network this week.</li>
       </ul>
     </div>
 
     <div class="card">
       <h3>🔬 Scanner Capability Program</h3>
       <div style="margin-bottom:14px; padding:12px; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2); border-radius:8px; font-size:13px; color:#fca5a5;">
-        ⚠️ 5 sites currently at operational risk without scanning capability
+        ⚠️ 5 sites still at operational risk without scanning capability
       </div>
       <div class="stat-row"><span class="stat-key">Sites at Risk</span><span class="stat-val" style="color:var(--red)">5</span></div>
       <div class="stat-row"><span class="stat-key">Scanners Needed</span><span class="stat-val">15 units</span></div>
       <div class="stat-row"><span class="stat-key">Unit Cost Range</span><span class="stat-val">$11,000 – $15,000</span></div>
       <div class="stat-row"><span class="stat-key">Total Estimated Cost</span><span class="stat-val" style="color:var(--red)">~$165,000</span></div>
-      <div class="stat-row"><span class="stat-key">Annual Software Fees</span><span class="stat-val">Additional (TBD)</span></div>
-      <div class="stat-row"><span class="stat-key">Cost-Share Strategy</span><span class="stat-val">Mike + Phil + Amy + Brooke</span></div>
+      <div class="stat-row"><span class="stat-key">Cost-Share Discussion</span><span class="stat-val">Mike + Phil + Amy + Brooke</span></div>
       <div class="stat-row"><span class="stat-key">Stakeholders</span><span class="stat-val">Mark, Reagan, Hunter</span></div>
     </div>
 
     <div class="card">
-      <h3>🤝 Dealer & Parts Network</h3>
+      <h3>🤝 DSP Engagement Priorities</h3>
       <ul class="item-list">
-        <li><span class="dot blue"></span>Building delivery systems with <strong>Isuzu</strong> and <strong>Hino</strong> dealers</li>
-        <li><span class="dot yellow"></span>Negotiating stocking arrangements with high-volume suppliers</li>
-        <li><span class="dot red"></span>One-off parts causing 56+ day lead times — escalation needed</li>
-        <li><span class="dot green"></span>Common parts (72.2%) generally well-managed</li>
-        <li><span class="dot yellow"></span>27.8% repair/specialized parts require broader supplier relationships</li>
+        <li><span class="dot red"></span><strong>JDTC (HPD1)</strong> — All 7 WK11 leaks. Direct outreach + coverage fix required simultaneously.</li>
+        <li><span class="dot red"></span><strong>LDOG (HMS2)</strong> — 8 WK11 leaks. New 2nd tech gives Kooner leverage. Call before WK12.</li>
+        <li><span class="dot red"></span><strong>JBXL (HIN3)</strong> — 6 WK11 leaks. Request hold until tech arrives ~3/25.</li>
+        <li><span class="dot yellow"></span><strong>SFRM (HDT3)</strong> — WK11 survey: weekend gap + no lift. 9 leaked. Address both concretely.</li>
+        <li><span class="dot yellow"></span><strong>ARMA (HLA2)</strong> — Parts backorder confirmed. 11 leaked. Stock common parts on-site.</li>
+        <li><span class="dot yellow"></span><strong>ORMP (HTP2)</strong> — Silent 5 weeks, 2.3/5 avg. Proactive outreach before WK12.</li>
       </ul>
     </div>
 
     <div class="card full-card">
-      <h3>📅 Strategic Horizon — Near-Term Milestones</h3>
+      <h3>📅 Strategic Horizon — WK11 Milestones</h3>
       <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:16px; margin-top:4px;">
 
-        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:16px;">
-          <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--accent); margin-bottom:10px;">This Week</div>
+        <div class="milestone-block">
+          <div class="milestone-label" style="color:var(--green)">✓ Completed This Week</div>
           <ul class="item-list" style="font-size:12px;">
-            <li><span class="dot green"></span>Brooke submits brokerage fee proposal <strong style="color:var(--green)">✓ Done (15%)</strong></li>
-            <li><span class="dot blue"></span>Scanner cost-share discussion initiated (Mike, Amy)</li>
-            <li><span class="dot blue"></span>Hunter shares ISS wave schedule</li>
+            <li><span class="dot green"></span>Direct integration launched 3/16</li>
+            <li><span class="dot green"></span>HDT3 3rd tech started 3/16</li>
+            <li><span class="dot green"></span>HMS2 2nd tech started 3/16</li>
+            <li><span class="dot green"></span>Box Truck TAT hit target for first time</li>
+            <li><span class="dot green"></span>All 3 TAT KPIs below 2d simultaneously</li>
           </ul>
         </div>
 
-        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:16px;">
-          <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--yellow); margin-bottom:10px;">March 16 — Launch Week</div>
+        <div class="milestone-block">
+          <div class="milestone-label" style="color:var(--yellow)">⏳ In Progress — 2 Weeks</div>
           <ul class="item-list" style="font-size:12px;">
-            <li><span class="dot yellow"></span>Direct Integration goes live</li>
-            <li><span class="dot yellow"></span>ISS Phase 1 rollout begins</li>
-            <li><span class="dot yellow"></span>Rollback to Smartsheet if needed</li>
-            <li><span class="dot yellow"></span>3 additional hires onboarding</li>
+            <li><span class="dot yellow"></span>HCL2 2nd tech onboard ~3/25</li>
+            <li><span class="dot yellow"></span>HIN3 new tech paperwork ~3/25</li>
+            <li><span class="dot yellow"></span>BJS config deployed to production per station</li>
+            <li><span class="dot yellow"></span>Scanner cost-share decision</li>
+            <li><span class="dot yellow"></span>LDOG + ORMP proactive outreach</li>
           </ul>
         </div>
 
-        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:16px;">
-          <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--green); margin-bottom:10px;">Next 4–6 Weeks</div>
+        <div class="milestone-block">
+          <div class="milestone-label" style="color:var(--accent)">🎯 Next 4–6 Weeks</div>
           <ul class="item-list" style="font-size:12px;">
-            <li><span class="dot green"></span>Push adoption from 69% → 85%</li>
-            <li><span class="dot green"></span>Scanner procurement decision finalized</li>
-            <li><span class="dot green"></span>Dealer stocking arrangements live</li>
-            <li><span class="dot green"></span>David's field initiative in full swing</li>
+            <li><span class="dot blue"></span>Push adoption back above 60% → 70% → 85%</li>
+            <li><span class="dot blue"></span>HCL2 2nd tech fully ramped — backlog clearing</li>
+            <li><span class="dot blue"></span>HDY1 2nd tech hired and starting</li>
+            <li><span class="dot blue"></span>ISS Phase 2/3 rollout at remaining stations</li>
+            <li><span class="dot blue"></span>Dealer stocking arrangements live (Isuzu + Hino)</li>
           </ul>
         </div>
 
@@ -929,11 +1031,11 @@
 </div>
 
 <script>
-function switchTab(id) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+function switchTab(id, el) {
+  document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
   document.getElementById('tab-' + id).classList.add('active');
-  event.target.classList.add('active');
+  el.classList.add('active');
 }
 </script>
 </body>
